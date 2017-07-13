@@ -1,0 +1,40 @@
+1- Given an array of integers, sort the array into a wave like array and return it, In other words, arrange the elements into a sequence such that a1 >= a2 <= a3 >= a4 <= a5.....
+
+
+void  swap(int * first, int * second){
+    int temp=*first;
+    *first=*second;
+    *second=temp;
+}
+vector<int> Solution::wave(vector<int> &A) {
+  int arr_size=A.size();
+  
+  sort(A.begin(),A.end());
+  for (int i=0; i<arr_size-1; i+=2){
+      swap(&A[i], &A[i+1]);
+  }
+  
+  return A;
+}
+
+-------------------------------------------------
+
+2- Find the contiguous subarray within an array (containing at least one number) which has the largest sum.
+
+int Solution::maxSubArray(const vector<int> &A) {
+   int max_result = INT_MIN, max_till_here = 0;
+   int arr_size=A.size();
+    for (int i = 0; i < arr_size ; i++)
+    {
+        max_till_here = max_till_here + A[i];
+        if (max_result < max_till_here)
+            max_result = max_till_here;
+ 
+        if (max_till_here < 0)
+            max_till_here = 0;
+    }
+    
+    return max_result;
+}
+
+

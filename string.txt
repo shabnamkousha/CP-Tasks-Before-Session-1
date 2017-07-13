@@ -1,0 +1,44 @@
+1- strstr - locate a substring ( needle ) in a string ( haystack ).
+
+int Solution::strStr(const string &haystack, const string &needle) {
+   
+   int hay_size= haystack.length();
+    for(int i = 0; i < haystack.length(); i++ ) {
+        for(int j = 0; j < needle.length() && i+j < haystack.length(); j++ ) {
+            if(needle[j] != haystack[i+j]) {
+                break;
+            } else if (j == needle.length()-1) {
+                return i;
+            }
+        }
+ 
+    }
+       return -1;
+}
+
+-------------------------------------------------------------
+
+2- Given a string s consists of upper/lower-case alphabets and empty space characters ' ', return the length of last word in the string.
+
+int Solution::lengthOfLastWord(const string &A) {
+    int str_size=A.length();
+   if(str_size==0) 
+     return 0;
+    
+    int last_word_length=0;
+    bool counting_the_same_word=true;
+
+    for(int i=0;i<str_size;i++){
+        if(counting_the_same_word==true&&A[i]!=' ') 
+            last_word_length++;
+        if(A[i]==' ') 
+            counting_the_same_word=false;
+        if(counting_the_same_word==false&&A[i]!=' '){
+            last_word_length=1;
+            counting_the_same_word=true;
+        }
+    }
+    return last_word_length;
+}
+
+
